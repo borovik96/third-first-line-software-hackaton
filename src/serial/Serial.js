@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Well, Checkbox, Alert } from 'react-bootstrap';
+import { Link, browserHistory } from 'react-router';
+
+import './serials.css';
 
 export default class Serial extends Component {
   constructor(props) {
@@ -26,7 +29,7 @@ export default class Serial extends Component {
       this.setState({
         description: serial.description,
         name: serial.name,
-        isForMe: serial.user.id === 1,
+        isForMe: Boolean(serial.user),
       });
     });
   }
@@ -68,10 +71,11 @@ export default class Serial extends Component {
     return (
       <div>
         <h2>{this.state.name}</h2>
-        <Well>{this.state.description}</Well>
+        <Well className="description">{this.state.description}</Well>
         <Checkbox onChange={(e) => {this.changeMyFilm(e);}} checked={this.state.isForMe}>Я смотрю этот сериал</Checkbox>
         <Alert className={this.state.message && !this.state.error ? '' : 'hidden'}>{this.state.message}</Alert>
         <Alert bsStyle='danger' className={this.state.error ? '' : 'hidden'}>{this.state.error}</Alert>
+        <Link href="#" onClick={browserHistory.goBack} >Назад</Link>
       </div>
 
     );

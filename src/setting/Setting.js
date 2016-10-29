@@ -34,12 +34,28 @@ export default class Setting extends Component{
       });
     });
 
+    fetch('/api/user/serials')
+    .then((res) => {
+      if(res.status === 200 || res.status === 201) return res.json();
+      throw new Error(`Error: ${res.status} ${res.statusText}`);
+    })
+    .then((data) => {
+      this.setState({
+        userSerials: data,
+      });
+    })
+    .catch((err) => {
+      this.setState({
+        error: err.message,
+      });
+    });
+
   }
   render(){
     return(
       <div>
         <h4>Выберите фильмы и сериалы, которые вы смотрите:</h4>
-        <Col md={5} mdOffset={1}>
+        <Col md={7} mdOffset={1}>
             {this.state.allSerials.map(
               serial => <div
                 className="serial-item"
@@ -47,7 +63,7 @@ export default class Setting extends Component{
               >
                 <Link
                   href={`/serials/${serial.id}`}
-                >{serial.name}</Link>
+                >{serial.name}{this.isMySerial(serial) ? ' (Да)' : ' (Нет)'}</Link>
                 <br/>
               </div>
             )}

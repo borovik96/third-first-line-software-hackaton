@@ -104,13 +104,13 @@ export default class Note extends Component {
   render() {
     return (
       <Panel className="note">
-        <h3>{this.state.name}</h3>
+        <h3><strong>{this.state.name}</strong></h3>
         <p
           className={`${this.state.complete ? 'complete' : ''} note`}
           ref={(input) => { this.description = input;}}
           contentEditable={this.state.isWritable}
         >{this.state.description}</p>
-        <p className="date-to-complete">{moment.unix(this.state.date).locale('ru').format('DD.MM.YYYY HH:mm')}</p>
+        <p className="date-to-complete text-primary">{moment.unix(this.state.date).locale('ru').format('DD.MM.YYYY HH:mm')}</p>
         <Row>
           <Button disabled={this.state.complete} onClick={() => { this.setComplete();}} bsStyle="success">Выполненно</Button>
           {/* <Button onClick={() => { this.setComplete();}} bsStyle="success">Подробнее</Button> */}

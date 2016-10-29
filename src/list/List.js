@@ -105,6 +105,7 @@ export default class Note extends Component {
             inputProps={{placeholder: 'Введите дату и время в формате dd.mm.yyyy hh:mm'}}
             locale="ru"
             dateFormat="DD.MM.YYYY"
+            closeOnSelect={true}
             timeFormat="HH:mm"
             onChange={(date) => { this.updateNewTaskTime(date); }}
           />
