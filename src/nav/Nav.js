@@ -1,4 +1,5 @@
 import { Navbar } from 'react-bootstrap';
+import { Link } from 'react-router';
 import React, { Component } from 'react';
 
 export default class Navigation extends Component {
@@ -7,7 +8,8 @@ export default class Navigation extends Component {
     return (<Navbar>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="#">Spoiler motivator</a>
+            {/* <Link href="">Spoiler motivator</Link> */}
+            <Link href="/tasks/23">Task</Link>
           </Navbar.Brand>
         </Navbar.Header>
       </Navbar>

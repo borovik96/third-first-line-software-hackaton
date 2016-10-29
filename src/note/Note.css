@@ -1,0 +1,11 @@
+/*.note{
+  width: 50%
+}*/
+
+.complete{
+  text-decoration: line-through;
+}
+
+p[contenteditable=true]{
+  background-color: rgba(71, 77, 70, 0.6);
+}
