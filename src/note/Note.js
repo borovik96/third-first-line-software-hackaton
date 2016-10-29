@@ -1,7 +1,7 @@
 import { Panel, Button, Alert, Row } from 'react-bootstrap';
 import React, { Component } from 'react';
 import 'whatwg-fetch';
-
+import moment from 'moment';
 import './Note.css';
 
 export default class Note extends Component {
@@ -51,6 +51,10 @@ export default class Note extends Component {
       complete: true,
     });
     this.saveTask(true);
+  }
+
+  isSpoiler() {
+    return this.state.date > Date.now()/1000;
   }
 
   saveTask(cmp){
@@ -106,7 +110,7 @@ export default class Note extends Component {
           ref={(input) => { this.description = input;}}
           contentEditable={this.state.isWritable}
         >{this.state.description}</p>
-        <p className="date-to-complete">{(new Date(this.state.date*1000)).toLocaleDateString('ru')}</p>
+        <p className="date-to-complete">{moment.unix(this.state.date).locale('ru').format('DD.MM.YYYY HH:mm')}</p>
         <Row>
           <Button disabled={this.state.complete} onClick={() => { this.setComplete();}} bsStyle="success">Выполненно</Button>
           {/* <Button onClick={() => { this.setComplete();}} bsStyle="success">Подробнее</Button> */}
@@ -117,6 +121,12 @@ export default class Note extends Component {
             className={this.state.error ? '' : 'hidden'}
             bsStyle="danger"
           >{this.state.error}</Alert>
+        </Row>
+        <Row>
+          <Alert
+            className={this.isSpoiler() ? 'hidden' : ''}
+            bsStyle="danger"
+          >{this.state.spoiler}</Alert>
         </Row>
 
       </Panel>

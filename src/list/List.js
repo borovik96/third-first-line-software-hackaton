@@ -32,7 +32,7 @@ export default class Note extends Component {
   updateNewTaskTime(date){
     if(date instanceof moment){
       this.setState({
-        newTaskTime: date.unix() / 1000,
+        newTaskTime: date.unix(),
       });
     }
   }
@@ -105,7 +105,7 @@ export default class Note extends Component {
             inputProps={{placeholder: 'Введите дату и время в формате dd.mm.yyyy hh:mm'}}
             locale="ru"
             dateFormat="DD.MM.YYYY"
-            timeFormat="hh:mm"
+            timeFormat="HH:mm"
             onChange={(date) => { this.updateNewTaskTime(date); }}
           />
         </Row>

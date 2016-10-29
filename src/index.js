@@ -7,6 +7,7 @@ import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import App from './App';
 import Setting from './setting/Setting';
 import List from './list/List';
+import Serial from './serial/Serial';
 import './index.css';
 
 
@@ -15,6 +16,8 @@ ReactDOM.render(
     <Route path="/" component={App}>
       <IndexRoute component={List} />
       <Route path="/setting" component={Setting}/>
+      <Route path="/serials/:id" component={Serial}/>
+
     </Route>
   </Router>,
   document.getElementById('root')
