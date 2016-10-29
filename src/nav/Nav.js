@@ -8,8 +8,8 @@ export default class Navigation extends Component {
     return (<Navbar>
         <Navbar.Header>
           <Navbar.Brand>
-            {/* <Link href="">Spoiler motivator</Link> */}
-            <Link href="/tasks/23">Task</Link>
+          <Link href="/">Spoiler motivator</Link>
+            <Link href="/setting">Настройка сериалов</Link>
           </Navbar.Brand>
         </Navbar.Header>
       </Navbar>

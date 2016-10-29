@@ -7,14 +7,14 @@ import './Note.css';
 export default class Note extends Component {
   constructor(props) {
     super(props);
+    const id = props.params ? props.params.task : props.id;
     this.state = {
-      id: props.params.task || props.id,
+      id,
       name: props.name,
-      desc: props.desc,
-      time: props.time,
-      isComplete: props.isComplete,
+      description: props.description,
+      date: props.date,
+      complete: props.complete,
       spoiler: props.spoiler,
-      serverReq: {},
       isWritable: false,
       saveButtonText: 'Изменить',
       error: '',
@@ -33,8 +33,9 @@ export default class Note extends Component {
       .then((data) => {
         this.setState({
           name: data.name,
-          desc: data.description,
-          isComplete: data.complete
+          description: data.description,
+          complete: data.complete,
+          date: data.date,
         });
       })
       .catch((err) => {
@@ -47,12 +48,12 @@ export default class Note extends Component {
 
   setComplete() {
     this.setState({
-      isComplete: true,
+      complete: true,
     });
-    this.saveTask();
+    this.saveTask(true);
   }
 
-  saveTask(){
+  saveTask(cmp){
     fetch(`/api/tasks/${this.state.id}`, {
       method: 'PUT',
       headers: {
@@ -60,49 +61,56 @@ export default class Note extends Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        name: this.state.name,
-        description: this.state.desc,
-        complete: this.state.isComplete,
-        date: this.state.time,
+        complete: cmp,
       })
     }).then((res) => {
       if(res.status !== 200) throw new Error(`Error: ${res.status} ${res.statusText}`);
+      this.setState({
+        error: '',
+      });
     })
     .catch((err) => {
       this.setState({
         error: err.message,
       });
+      // this.setState({
+      //   isWritable: true,
+      //   saveButtonText: 'Сохранить',
+      // });
     });
   }
 
-  saveButtonClick(){
-    if(this.state.isWritable){
-      this.setState({ //Save
-        isWritable: false,
-        saveButtonText: 'Изменить',
-        desc: this.desc.innerHTML
-      });
-      this.saveTask();
-    } else {
-      this.setState({
-        isWritable: true,
-        saveButtonText: 'Сохранить',
-      });
-    }
-  }
+  // saveButtonClick(){
+  //   if(this.state.isWritable){
+  //     const desc = this.description.textContent;
+  //     this.setState({ //Save
+  //       isWritable: false,
+  //       saveButtonText: 'Изменить',
+  //       description: desc,
+  //     });
+  //     console.log(this.state.description, desc);
+  //     this.saveTask();
+  //   } else {
+  //     this.setState({
+  //       isWritable: true,
+  //       saveButtonText: 'Сохранить',
+  //     });
+  //   }
+  // }
   render() {
     return (
       <Panel className="note">
         <h3>{this.state.name}</h3>
         <p
-          className={`${this.state.isComplete ? 'complete' : ''}`}
-          ref={(input) => { this.desc = input;}}
+          className={`${this.state.complete ? 'complete' : ''} note`}
+          ref={(input) => { this.description = input;}}
           contentEditable={this.state.isWritable}
-        >{this.state.desc}</p>
-        <p className="time-to-complete">{this.state.time}</p>
+        >{this.state.description}</p>
+        <p className="date-to-complete">{(new Date(this.state.date*1000)).toLocaleDateString('ru')}</p>
         <Row>
-          <Button onClick={() => { this.setComplete();}} bsStyle="success">Выполненно</Button>
-          <Button onClick={() => { this.saveButtonClick(); }}>{this.state.saveButtonText}</Button>
+          <Button disabled={this.state.complete} onClick={() => { this.setComplete();}} bsStyle="success">Выполненно</Button>
+          {/* <Button onClick={() => { this.setComplete();}} bsStyle="success">Подробнее</Button> */}
+          {/* <Button onClick={() => { this.saveButtonClick(); }}>{this.state.saveButtonText}</Button> */}
         </Row>
         <Row>
           <Alert

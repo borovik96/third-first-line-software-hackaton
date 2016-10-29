@@ -7,5 +7,17 @@
 }
 
 p[contenteditable=true]{
-  background-color: rgba(71, 77, 70, 0.6);
+  background-color: rgba(169, 170, 169, 0.6);
+}
+
+.row{
+  margin: 10px;
+}
+
+.btn{
+  margin: 10px;
+}
+
+.note{
+  font-size: 20px;
 }

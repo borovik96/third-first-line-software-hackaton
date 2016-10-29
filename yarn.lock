@@ -3576,6 +3576,10 @@ mkdirp@^0.5.0, mkdirp@^0.5.1, "mkdirp@>=0.5 0", mkdirp@~0.5.0, mkdirp@~0.5.1, mk
   dependencies:
     minimist "0.0.8"
 
+moment:
+  version "2.15.2"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.15.2.tgz#1bfdedf6a6e345f322fe956d5df5bd08a8ce84dc"
+
 ms@0.7.1:
   version "0.7.1"
   resolved "https://registry.yarnpkg.com/ms/-/ms-0.7.1.tgz#9cd13c03adbff25b65effde7ce864ee952017098"
@@ -3754,6 +3758,10 @@ number-is-nan@^1.0.0:
 oauth-sign@~0.8.1:
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/oauth-sign/-/oauth-sign-0.8.2.tgz#46a6ab7f0aead8deae9ec0565780b7d4efeb9d43"
+
+object-assign@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-3.0.0.tgz#9bedd5ca0897949bca47e7ff408062d549f587f2"
 
 object-assign@^4.0.1, object-assign@^4.1.0, object-assign@4.1.0:
   version "4.1.0"
@@ -4360,6 +4368,13 @@ react-bootstrap:
     uncontrollable "^4.0.1"
     warning "^3.0.0"
 
+react-datetime:
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/react-datetime/-/react-datetime-2.6.2.tgz#2cf01449dd8722b1d144bec427b7e1be7e52058e"
+  dependencies:
+    object-assign "^3.0.0"
+    react-onclickoutside "^4.1.0"
+
 react-dev-utils@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-0.3.0.tgz#4a0527062a757579cb316fa254681aecca09d038"
@@ -4375,6 +4390,12 @@ react-dev-utils@^0.3.0:
 react-dom@^15.3.2:
   version "15.3.2"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.3.2.tgz#c46b0aa5380d7b838e7a59c4a7beff2ed315531f"
+
+react-onclickoutside@^4.1.0:
+  version "4.9.0"
+  resolved "https://registry.yarnpkg.com/react-onclickoutside/-/react-onclickoutside-4.9.0.tgz#2908c3136e244102bea5e5437a838a528d5d2995"
+  dependencies:
+    object-assign "^4.0.1"
 
 react-overlays@^0.6.10:
   version "0.6.10"
