@@ -12,6 +12,8 @@ export default class Navigation extends Component {
               <Link className="link" href="/">Список заметок</Link>
               <Link className="link" href="/setting">Настройка сериалов</Link>
               <Link className="link" href="/spoiler">Добавить спойлер</Link>
+              <Link className="link" href="/login">Вход</Link>
+              <Link className="link" href="/register">Регистрация</Link>
           </Navbar.Brand>
         </Navbar.Header>
       </Navbar>

@@ -8,9 +8,22 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-
+      loginInfo: {
+        'access-token': localStorage.getItem('access-token'),
+        client: localStorage.getItem('client'),
+        expiry: localStorage.getItem('expiry'),
+        uid: localStorage.getItem('uid'),
+      }
     };
   }
+
+  setNewLoginInfo(info) {
+    localStorage.setItem('access-token', info['access-token']);
+    localStorage.setItem('client', info.client);
+    localStorage.setItem('expiry', info.expiry);
+    localStorage.setItem('uid', info.uid);
+  }
+
   render() {
     return (
       <div className="App">
@@ -19,7 +32,10 @@ class App extends Component {
         </div>
         <Grid>
           <Col md={6} mdOffset={3}>
-            {this.props.children}
+            {React.cloneElement(this.props.children, {
+              setNewLoginInfo: this.setNewLoginInfo.bind(this),
+              loginInfo: this.state.loginInfo,
+            })}
           </Col>
         </Grid>
       </div>

@@ -12,11 +12,14 @@ export default class Serial extends Component {
       description: '',
       name: '',
       isForMe: false,
+      loginInfo: props.loginInfo,
     };
   }
 
   componentDidMount() {
-    fetch('/api/serials')
+    fetch('/api/serials', {
+      headers: this.state.loginInfo,
+    })
     .then(res => res.json())
     .then(data => {
       let serial;

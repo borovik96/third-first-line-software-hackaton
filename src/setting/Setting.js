@@ -10,6 +10,7 @@ export default class Setting extends Component{
       allSerials: [],
       userSerials: [],
       userSerialsId: [],
+      loginInfo: props.loginInfo,
     };
   }
 
@@ -18,7 +19,9 @@ export default class Setting extends Component{
   }
 
   componentDidMount() {
-    fetch('/api/serials')
+    fetch('/api/serials', {
+      headers: this.state.loginInfo,
+    })
     .then((res) => {
       if(res.status === 200 || res.status === 201) return res.json();
       throw new Error(`Error: ${res.status} ${res.statusText}`);
